@@ -76,13 +76,7 @@ def process_image(image_tensor):
     return img
 
 
-i = 0
-pred_label_img = pred_label_imgs[i]  # (shape: (img_h, img_w))
-
-
-pred_label_img_color = label_img_to_color(pred_label_img)
-overlayed_img = 0.35 * img + 0.65 * pred_label_img_color
-overlayed_img = overlayed_img.astype(np.uint8)
-
-plt.figure(figsize=(20, 15))
-plt.imshow(overlayed_img)
+def overlay_image(pred_label_img, img):
+    pred_label_img_color = label_img_to_color(pred_label_img)
+    overlayed_img = 0.35 * img + 0.65 * pred_label_img_color
+    overlayed_img = overlayed_img.astype(np.uint8)
