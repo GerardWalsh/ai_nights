@@ -87,6 +87,5 @@ def overlay_image(pred_label_img, img):
 
 def run_inference(model, input_tensor):
     t = time.time()
-    image = PIL.Image.open(image_file)
-    output = inference_model(image_tensor)
+    output = model(input_tensor)
     return (time.time() - t), output
