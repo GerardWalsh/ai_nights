@@ -1,6 +1,7 @@
 import time
 
 import numpy as np
+import PIL
 
 label_names = [
     "__background__",
