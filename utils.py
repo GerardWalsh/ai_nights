@@ -1,3 +1,5 @@
+import time
+
 import numpy as np
 
 label_names = [
@@ -25,7 +27,7 @@ label_names = [
 ]
 
 
-def get_label(outputs):
+def get_class_labels(outputs):
     pred_label_imgs = np.argmax(outputs, axis=1)  # (shape: (batch_size, img_h, img_w))
     return pred_label_imgs.astype(np.uint8)
 
@@ -80,3 +82,10 @@ def overlay_image(pred_label_img, img):
     pred_label_img_color = label_img_to_color(pred_label_img)
     overlayed_img = 0.35 * img + 0.65 * pred_label_img_color
     overlayed_img = overlayed_img.astype(np.uint8)
+
+
+def run_inference(model, input_tensor):
+    t = time.time()
+    image = PIL.Image.open(image_file)
+    output = inference_model(image_tensor)
+    return (time.time() - t), output
