@@ -2,6 +2,7 @@ import time
 
 import numpy as np
 import PIL
+import torch
 
 label_names = [
     "__background__",
@@ -80,12 +81,15 @@ def post_process_image(image_tensor):
 
 
 def overlay_image(pred_label_img, img):
-    pred_label_img_color = label_img_to_color(pred_label_img)
+    pred_label_img_color = convert_label_image_to_color(pred_label_img)
     overlayed_img = 0.35 * img + 0.65 * pred_label_img_color
     overlayed_img = overlayed_img.astype(np.uint8)
 
 
 def run_inference(model, input_tensor):
     t = time.time()
+    input_tensor = input_tensor.cuda()
     output = model(input_tensor)
+    torch.cuda.synchronize()
+    output = output.cpu()
     return (time.time() - t), output
