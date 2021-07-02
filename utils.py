@@ -88,8 +88,8 @@ def overlay_image(pred_label_img, img):
 
 def run_inference(model, input_tensor):
     t = time.time()
-    input_tensor = input_tensor.cuda()
-    output = model(input_tensor)
+    input_tensor_cuda = input_tensor.cuda()
+    output = model(input_tensor_cuda)
     torch.cuda.synchronize()
     output = output.cpu()
     return (time.time() - t), output
