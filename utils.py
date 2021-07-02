@@ -83,7 +83,7 @@ def post_process_image(image_tensor):
 def overlay_image(pred_label_img, img):
     pred_label_img_color = convert_label_image_to_color(pred_label_img)
     overlayed_img = 0.35 * img + 0.65 * pred_label_img_color
-    overlayed_img = overlayed_img.astype(np.uint8)
+    return overlayed_img.astype(np.uint8)
 
 
 def run_inference(model, input_tensor):
