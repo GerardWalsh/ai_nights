@@ -74,7 +74,7 @@ def convert_label_image_to_color(img):
 def post_process_image(image_tensor):
     img = image_tensor  # imgs[i] # (shape: (3, img_h, img_w))
 
-    img = img.data.cpu().numpy()
+    # img = img.data.cpu().numpy()
     img = np.transpose(img, (1, 2, 0))  # (shape: (img_h, img_w, 3))
     img = img * np.array([0.229, 0.224, 0.225])
     img = img + np.array([0.485, 0.456, 0.406])
@@ -91,8 +91,8 @@ def overlay_image(pred_label_img, img):
 
 def run_inference(model, input_tensor):
     t = time.time()
-    input_tensor_cuda = input_tensor.cuda()
-    output = model(input_tensor_cuda)
+    # input_tensor_cuda = input_tensor.cuda()
+    output = model(input_tensor)
     torch.cuda.synchronize()
     output = output.cpu()
     return (time.time() - t), output
