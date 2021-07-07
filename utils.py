@@ -1,3 +1,6 @@
+"""
+# visualization code copied from: https://github.com/fregu856/deeplabv3/blob/master/visualization/run_on_seq.py
+"""
 import time
 
 import numpy as np
